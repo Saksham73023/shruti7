@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Shruti Jain ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(255, 105, 180, 0.25), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255, 182, 193, 0.22), transparent 30%),
+        linear-gradient(135deg, #12071f, #24113a, #3a163d, #1a1035);
+      position: relative;
+    }
+
+    .stars, .hearts-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -40px;
+      color: rgba(255, 130, 180, 0.8);
+      font-size: 18px;
+      animation: floatUp linear forwards;
+      text-shadow: 0 0 10px rgba(255, 80, 150, 0.4);
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.6); }
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(-115vh) scale(1.9);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 92%;
+      max-width: 1050px;
+      margin: 30px auto 60px;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+      padding: 28px;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.28);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 30px;
+    }
+
+    .hero-left {
+      padding: 36px;
+      animation: fadeUp 1.1s ease;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      color: #ffd7ea;
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    h1 {
+      font-size: 3.4rem;
+      line-height: 1.05;
+      margin-bottom: 16px;
+      color: #ffe7f3;
+      text-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .name-script {
+      font-family: "Great Vibes", cursive;
+      font-size: 4rem;
+      color: #ffb7d9;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .typewriter {
+      min-height: 58px;
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: #fff4fb;
+      margin-bottom: 18px;
+    }
+
+    .hero-text {
+      color: #f8ddea;
+      line-height: 1.9;
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 13px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.28s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #ff4f93, #ff86b6);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(255, 79, 147, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    .hero-right {
+      padding: 20px;
+      animation: fadeUp 1.25s ease;
+    }
+
+    .main-photo-box {
+      padding: 18px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      text-align: center;
+    }
+
+    .main-photo {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .photo-note {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      color: #ffdce9;
+    }
+
+    section {
+      margin-top: 28px;
+    }
+
+    .section-card {
+      padding: 30px 24px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #ffe3ef;
+    }
+
+    .shayari {
+      text-align: center;
+      line-height: 2.1;
+      font-size: 1.12rem;
+      color: #fff6fb;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      padding: 22px 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      transition: 0.3s ease;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.20);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      background: rgba(255,255,255,0.10);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #ffcae0;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      color: #f7eaf1;
+      line-height: 1.8;
+      font-size: 0.96rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .timeline-item {
+      padding: 18px 20px;
+      border-left: 4px solid #ff83b8;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-right: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .timeline-item h4 {
+      color: #ffd6e7;
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .timeline-item p {
+      color: #f8ebf1;
+      line-height: 1.8;
+      font-size: 0.97rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .gallery .img-card {
+      background: rgba(255,255,255,0.06);
+      padding: 12px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.24);
+      transition: 0.28s ease;
+    }
+
+    .gallery .img-card:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .img-caption {
+      margin-top: 10px;
+      text-align: center;
+      color: #ffd9e9;
+      font-size: 0.92rem;
+    }
+
+    .final-message {
+      text-align: center;
+      color: #fff8fc;
+      line-height: 2.1;
+      font-size: 1.14rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .signature {
+      text-align: center;
+      margin-top: 18px;
+      color: #ffbddc;
+      font-family: "Great Vibes", cursive;
+      font-size: 2.5rem;
+    }
+
+    .music-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 5;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 20px;
+      background: linear-gradient(90deg, #ff4f93, #ff86b6);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(255, 79, 147, 0.35);
+    }
+
+    .start-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 4, 20, 0.84);
+      z-index: 10;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .overlay-box {
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      padding: 30px 24px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(14px);
+    }
+
+    .overlay-box h3 {
+      font-size: 2rem;
+      color: #ffe3ee;
+      margin-bottom: 10px;
+    }
+
+    .overlay-box p {
+      color: #fbeaf2;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .small-note {
+      text-align: center;
+      margin-top: 18px;
+      color: #f6dbe7;
+      font-size: 0.92rem;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(26px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2.6rem;
+      }
+
+      .name-script {
+        font-size: 3rem;
+      }
+
+      .main-photo {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 94%;
+      }
+
+      .hero-left, .hero-right, .section-card {
+        padding: 22px 18px;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+      }
+
+      .name-script {
+        font-size: 2.6rem;
+      }
+
+      .section-title {
+        font-size: 1.55rem;
+      }
+
+      .main-photo {
+        height: 310px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <div class="hearts-layer" id="heartsLayer"></div>
+
+  <div class="start-overlay" id="startOverlay">
+    <div class="overlay-box">
+      <h3>For Shruti Jain ❤️</h3>
+      <p>
+        This page has a little music and a lot of feelings.
+        Tap once to begin the surprise.
+      </p>
+      <button class="btn btn-primary" onclick="startExperience()">Tap to Start Music 🎵</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="hero">
+      <div class="hero-left glass">
+        <div class="tag">A little surprise made with feelings</div>
+        <h1>
+          For
+          <span class="name-script">Shruti Jain</span>
+        </h1>
+
+        <div class="typewriter" id="typewriter"></div>
+
+        <p class="hero-text">
+          Some people enter life quietly, but their presence changes everything.
+          This little page is just a small way to say that you are truly special.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="scrollToSection('shayariSection')">Read My Words 💌</button>
+          <button class="btn btn-secondary" onclick="scrollToSection('gallerySection')">See Memories ✨</button>
+        </div>
+
+        <p class="small-note">
+          Made especially for someone who makes ordinary moments feel beautiful.
+        </p>
+      </div>
+
+      <div class="hero-right glass">
+        <div class="main-photo-box">
+          <!-- MAIN IMAGE -->
+          <img src="images/shruti-main.jpg" alt="Shruti Jain" class="main-photo" />
+          <div class="photo-note">A place for your most special picture ❤️</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="shayariSection">
+      <div class="section-card glass">
+        <div class="section-title">A Few Lines For Shruti</div>
+        <div class="shayari">
+          In the quietest moments, your name feels like music to my heart,<br>
+          soft, beautiful, and impossible to forget.<br><br>
+
+          Your smile does not just brighten a face,<br>
+          it changes the whole mood of a day.<br><br>
+
+          If kindness had a face, it would look a little like you,<br>
+          and if warmth had a home, it would probably be your presence.<br><br>
+
+          I do not know how to explain it perfectly,<br>
+          but some part of life just feels better when I think of you. ❤️
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card glass">
+        <div class="section-title">Why You Feel So Special</div>
+        <div class="cards">
+          <div class="card">
+            <h3>Your Smile 😊</h3>
+            <p>There is something about your smile that feels gentle, real, and unforgettable.</p>
+          </div>
+          <div class="card">
+            <h3>Your Presence ✨</h3>
+            <p>Even a simple moment feels more meaningful when your presence is part of it.</p>
+          </div>
+          <div class="card">
+            <h3>Your Nature 🌸</h3>
+            <p>Your softness, grace, and simplicity make you stand out in the most beautiful way.</p>
+          </div>
+          <div class="card">
+            <h3>Your Effect ❤️</h3>
+            <p>You have that rare kind of energy that brings peace without even trying.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card glass">
+        <div class="section-title">What I Feel</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h4>When I Think About You</h4>
+            <p>It feels like my mind slows down just enough to appreciate something truly beautiful.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>When I See You</h4>
+            <p>There is always a small moment where everything else fades, and your presence becomes the only thing that matters.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>When I Miss You</h4>
+            <p>That is when I realize you are not just someone I admire — you are someone my heart notices deeply.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallerySection">
+      <div class="section-card glass">
+        <div class="section-title">Beautiful Pictures</div>
+        <div class="gallery">
+          <div class="img-card">
+            <img src="images/shruti-main.jpg" alt="Shruti Picture 1">
+            <div class="img-caption">The smile I never get tired of</div>
+          </div>
+          <div class="img-card">
+            <img src="images/shruti-2.jpg" alt="Shruti Picture 2">
+            <div class="img-caption">A moment worth saving forever</div>
+          </div>
+          <div class="img-card">
+            <img src="images/shruti-3.jpg" alt="Shruti Picture 3">
+            <div class="img-caption">Grace in the simplest form</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card glass">
+        <div class="section-title">One Last Message</div>
+        <div class="final-message">
+          Maybe I may not always find the perfect words,<br>
+          but this much is true and simple:<br><br>
+
+          You are genuinely special.<br>
+          Not in an ordinary way, but in the kind of way that stays in someone's heart.<br><br>
+
+          Some people are remembered for moments,<br>
+          but you are the kind of person who becomes a feeling.<br><br>
+
+          And that feeling is beautiful. ❤️
+        </div>
+        <div class="signature">For Shruti, with all my heart</div>
+      </div>
+    </section>
+  </div>
+
+  <button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
+
+  <!-- MUSIC FILE -->
+  <audio id="bgMusic" loop preload="auto" playsinline>
+    <source src="music/romantic-song.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const typeText = "Some names are spoken, but some names are felt. Shruti Jain is one of those names. ❤️";
+    let i = 0;
+
+    function typeWriter() {
+      if (i < typeText.length) {
+        document.getElementById("typewriter").innerHTML += typeText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 42);
+      }
+    }
+    typeWriter();
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      burstHearts(14);
+    }
+
+    function createStars() {
+      const stars = document.getElementById("stars");
+      for (let s = 0; s < 90; s++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        star.style.left = Math.random() * 100 + "vw";
+        star.style.top = Math.random() * 100 + "vh";
+        star.style.animationDelay = Math.random() * 3 + "s";
+        star.style.opacity = Math.random();
+        stars.appendChild(star);
+      }
+    }
+    createStars();
+
+    function burstHearts(count = 10) {
+      const layer = document.getElementById("heartsLayer");
+      for (let h = 0; h < count; h++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        heart.style.fontSize = (Math.random() * 18 + 16) + "px";
+        layer.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }
+    }
+
+    setInterval(() => {
+      burstHearts(1);
+    }, 900);
+
+    const music = document.getElementById("bgMusic");
+    const overlay = document.getElementById("startOverlay");
+
+    async function tryAutoplay() {
+      try {
+        await music.play();
+      } catch (e) {
+        overlay.style.display = "flex";
+      }
+    }
+
+    async function startExperience() {
+      overlay.style.display = "none";
+      try {
+        await music.play();
+      } catch (e) {
+        console.log("Music play blocked:", e);
+      }
+      burstHearts(18);
+    }
+
+    async function toggleMusic() {
+      if (music.paused) {
+        try {
+          await music.play();
+        } catch (e) {
+          overlay.style.display = "flex";
+        }
+      } else {
+        music.pause();
+      }
+    }
+
+    window.addEventListener("load", () => {
+      tryAutoplay(); 
+    });
+  </script>
+</body>
+</html>
