@@ -618,113 +618,111 @@
     Your browser does not support the audio element.
   </audio>
 
-  <script>
-    const typeText = "Some names are spoken, but some names are felt. Shruti Jain is one of those names. ❤️";
-    let i = 0;
+  <script> 
+  const typeText = "Some names are spoken, but some names are felt. Shruti Jain is one of those names. ❤️";
+  let i = 0;
 
-    function typeWriter() {
-      if (i < typeText.length) {
-        document.getElementById("typewriter").innerHTML += typeText.charAt(i);
-        i++;
-        setTimeout(typeWriter, 42);
-      }
+  function typeWriter() {
+    if (i < typeText.length) {
+      document.getElementById("typewriter").innerHTML += typeText.charAt(i);
+      i++;
+      setTimeout(typeWriter, 42);
     }
+  }
 
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-      burstHearts(14);
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    burstHearts(14);
+  }
+
+  function createStars() {
+    const stars = document.getElementById("stars");
+    for (let s = 0; s < 90; s++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.animationDelay = Math.random() * 3 + "s";
+      star.style.opacity = Math.random();
+      stars.appendChild(star);
     }
+  }
 
-    function createStars() {
-      const stars = document.getElementById("stars");
-      for (let s = 0; s < 90; s++) {
-        const star = document.createElement("div");
-        star.className = "star";
-        star.style.left = Math.random() * 100 + "vw";
-        star.style.top = Math.random() * 100 + "vh";
-        star.style.animationDelay = Math.random() * 3 + "s";
-        star.style.opacity = Math.random();
-        stars.appendChild(star);
-      }
+  function burstHearts(count = 10) {
+    const layer = document.getElementById("heartsLayer");
+    for (let h = 0; h < count; h++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      heart.style.fontSize = (Math.random() * 18 + 16) + "px";
+      layer.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
     }
+  }
 
-    function burstHearts(count = 10) {
-      const layer = document.getElementById("heartsLayer");
-      for (let h = 0; h < count; h++) {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-        heart.style.fontSize = (Math.random() * 18 + 16) + "px";
-        layer.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
-      }
+  const music = document.getElementById("bgMusic");
+  const overlay = document.getElementById("startOverlay");
+
+  async function tryAutoplay() {
+    try {
+      music.muted = true;
+      await music.play();
+    } catch (e) {
+      overlay.style.display = "flex";
     }
+  }
 
-    const music = document.getElementById("bgMusic");
-    const overlay = document.getElementById("startOverlay");
-
-    async function tryAutoplay() {
-      try {
-        music.muted = true;
-        await music.play();
-
-        setTimeout(() => {
-          try {
-            music.muted = false;
-          } catch (e) {
-            overlay.style.display = "flex";
-          }
-        }, 500);
-      } catch (e) {
-        overlay.style.display = "flex";
-      }
+  async function startExperience() {
+    overlay.style.display = "none";
+    try {
+      music.muted = false;
+      music.volume = 1;
+      await music.play();
+    } catch (e) {
+      console.log("Music play blocked:", e);
     }
+    burstHearts(18);
+  }
 
-    async function startExperience() {
-      overlay.style.display = "none";
-      try {
+  async function toggleMusic() {
+    try {
+      if (music.paused) {
         music.muted = false;
+        music.volume = 1;
         await music.play();
-      } catch (e) {
-        console.log("Music play blocked:", e);
-      }
-      burstHearts(18);
-    }
-
-    async function toggleMusic() {
-      if (music.paused) {
-        try {
-          music.muted = false;
-          await music.play();
-        } catch (e) {
-          overlay.style.display = "flex";
-        }
+      } else if (music.muted) {
+        music.muted = false;
+        music.volume = 1;
       } else {
-        music.pause(); 
+        music.pause();
       }
+    } catch (e) {
+      overlay.style.display = "flex";
     }
+  }
 
-    createStars();
-    typeWriter();
+  createStars();
+  typeWriter();
 
-    setInterval(() => {
-      burstHearts(1);
-    }, 900);
+  setInterval(() => {
+    burstHearts(1);
+  }, 900);
 
-    window.addEventListener("load", () => {
-      tryAutoplay();
-    });
+  window.addEventListener("load", () => {
+    tryAutoplay();
+  });
 
-    document.addEventListener("click", async () => {
+  document.addEventListener("click", async () => {
+    try {
+      music.muted = false;
+      music.volume = 1;
       if (music.paused) {
-        try {
-          music.muted = false;
-          await music.play();
-        } catch (e) {}
+        await music.play();
       }
-    }, { once: true });
+    } catch (e) {}
+  }, { once: true });
   </script>
 </body>
 </html>
