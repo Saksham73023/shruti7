@@ -611,9 +611,28 @@
   <button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
 
   <!-- MUSIC FILE -->
-  <audio id="bgMusic" loop preload="auto" playsinline>
-    <source src="music/romantic-song.mp3" type="audio/mpeg">
-  </audio>
+  <audio id="bgMusic" loop autoplay muted>
+  <source src="music/dhurandhar.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+window.addEventListener("load", function () {
+  const music = document.getElementById("bgMusic");
+
+  const playPromise = music.play();
+
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        setTimeout(() => {
+          music.muted = false;
+        }, 500);
+      })
+      .catch(() => {
+        console.log("Autoplay blocked by browser");
+      });
+  }
+});
 
   <script>
     const typeText = "Some names are spoken, but some names are felt. Shruti Jain is one of those names. ❤️";
