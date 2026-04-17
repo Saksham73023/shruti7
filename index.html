@@ -16,7 +16,7 @@
     }
 
     html {
-      scroll-behavior: smooth; 
+      scroll-behavior: smooth;
     }
 
     body {
@@ -160,6 +160,10 @@
       font-weight: 600;
       cursor: pointer;
       transition: 0.28s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .btn-primary {
@@ -172,6 +176,27 @@
       background: rgba(255,255,255,0.1);
       color: white;
       border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .btn-special {
+      background: linear-gradient(90deg, #9b5cff, #ff6ab8, #ffd86f);
+      color: white;
+      box-shadow: 0 12px 28px rgba(155, 92, 255, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-special::before {
+      content: "🦋";
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      animation: tinyFlutter 1.8s ease-in-out infinite;
+    }
+
+    .btn-special span {
+      padding-left: 18px;
     }
 
     .btn:hover {
@@ -312,14 +337,13 @@
       transform: translateY(-5px) scale(1.02);
     }
 
-   .gallery img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;              
-  object-position: top center;    
-  border-radius: 15px;
-  display: block;
-}
+    .gallery img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 15px;
+      display: block;
     }
 
     .img-caption {
@@ -413,6 +437,13 @@
       }
     }
 
+    @keyframes tinyFlutter {
+      0%, 100% { transform: translateY(-50%) rotate(0deg) scale(1); }
+      25% { transform: translateY(-60%) rotate(-10deg) scale(1.1); }
+      50% { transform: translateY(-45%) rotate(8deg) scale(0.96); }
+      75% { transform: translateY(-58%) rotate(-6deg) scale(1.08); }
+    }
+
     @media (max-width: 900px) {
       .hero {
         grid-template-columns: 1fr;
@@ -493,6 +524,7 @@
         <div class="hero-buttons">
           <button class="btn btn-primary" onclick="scrollToSection('shayariSection')">Read My Words 💌</button>
           <button class="btn btn-secondary" onclick="scrollToSection('gallerySection')">See Memories ✨</button>
+          <button class="btn btn-special" onclick="openShrutiSpecial()"><span>Shruti Special 🦋</span></button>
         </div>
 
         <p class="small-note">
@@ -613,116 +645,386 @@
 
   <button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
 
-  <audio id="bgMusic" loop preload="auto" playsinline muted> 
-     <source src="rutba.mp3" type="audio/mpeg">
+  <audio id="bgMusic" loop preload="auto" playsinline muted>
+    <source src="rutba.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
-  <script> 
-  const typeText = "Some names are spoken, but some names are felt. Shruti Jain is one of those names. ❤️";
-  let i = 0;
+  <script>
+    const typeText = "Some names are spoken, but some names are felt. Shruti Jain is one of those names. ❤️";
+    let i = 0;
 
-  function typeWriter() {
-    if (i < typeText.length) {
-      document.getElementById("typewriter").innerHTML += typeText.charAt(i);
-      i++;
-      setTimeout(typeWriter, 42);
+    function typeWriter() {
+      if (i < typeText.length) {
+        document.getElementById("typewriter").innerHTML += typeText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 42);
+      }
     }
-  }
 
-  function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    burstHearts(14);
-  }
-
-  function createStars() {
-    const stars = document.getElementById("stars");
-    for (let s = 0; s < 90; s++) {
-      const star = document.createElement("div");
-      star.className = "star";
-      star.style.left = Math.random() * 100 + "vw";
-      star.style.top = Math.random() * 100 + "vh";
-      star.style.animationDelay = Math.random() * 3 + "s";
-      star.style.opacity = Math.random();
-      stars.appendChild(star);
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      burstHearts(14);
     }
-  }
 
-  function burstHearts(count = 10) {
-    const layer = document.getElementById("heartsLayer");
-    for (let h = 0; h < count; h++) {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-      heart.style.fontSize = (Math.random() * 18 + 16) + "px";
-      layer.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
+    function createStars() {
+      const stars = document.getElementById("stars");
+      for (let s = 0; s < 90; s++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        star.style.left = Math.random() * 100 + "vw";
+        star.style.top = Math.random() * 100 + "vh";
+        star.style.animationDelay = Math.random() * 3 + "s";
+        star.style.opacity = Math.random();
+        stars.appendChild(star);
+      }
     }
-  }
 
-  const music = document.getElementById("bgMusic");
-  const overlay = document.getElementById("startOverlay");
-
-  async function tryAutoplay() {
-    try {
-      music.muted = true;
-      await music.play();
-    } catch (e) {
-      overlay.style.display = "flex";
+    function burstHearts(count = 10) {
+      const layer = document.getElementById("heartsLayer");
+      for (let h = 0; h < count; h++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        heart.style.fontSize = (Math.random() * 18 + 16) + "px";
+        layer.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+      }
     }
-  }
 
-  async function startExperience() {
-    overlay.style.display = "none";
-    try {
-      music.muted = false;
-      music.volume = 1;
-      await music.play();
-    } catch (e) {
-      console.log("Music play blocked:", e);
+    const music = document.getElementById("bgMusic");
+    const overlay = document.getElementById("startOverlay");
+
+    async function tryAutoplay() {
+      try {
+        music.muted = true;
+        await music.play();
+      } catch (e) {
+        overlay.style.display = "flex";
+      }
     }
-    burstHearts(18);
-  }
 
-  async function toggleMusic() {
-    try {
-      if (music.paused) {
+    async function startExperience() {
+      overlay.style.display = "none";
+      try {
         music.muted = false;
         music.volume = 1;
         await music.play();
-      } else if (music.muted) {
+      } catch (e) {
+        console.log("Music play blocked:", e);
+      }
+      burstHearts(18);
+    }
+
+    async function toggleMusic() {
+      try {
+        if (music.paused) {
+          music.muted = false;
+          music.volume = 1;
+          await music.play();
+        } else if (music.muted) {
+          music.muted = false;
+          music.volume = 1;
+        } else {
+          music.pause();
+        }
+      } catch (e) {
+        overlay.style.display = "flex";
+      }
+    }
+
+    function openShrutiSpecial() {
+      const nextPage = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shruti Special 🦋</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      overflow: hidden;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,175,204,0.22), transparent 25%),
+        radial-gradient(circle at 80% 30%, rgba(173,216,255,0.18), transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(255,220,140,0.16), transparent 25%),
+        linear-gradient(180deg, #090516 0%, #140b25 35%, #1f1238 100%);
+      perspective: 1200px;
+      color: white;
+    }
+    .scene {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .title-box {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      text-align: center;
+      padding: 18px 24px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      width: min(92%, 760px);
+    }
+    .title-box h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      color: #ffd4ec;
+      margin-bottom: 10px;
+    }
+    .title-box p {
+      color: #fff0f8;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(10px);
+      opacity: 0.75;
+      animation: orbFloat linear infinite;
+    }
+    .butterfly {
+      position: absolute;
+      width: 170px;
+      height: 130px;
+      transform-style: preserve-3d;
+      animation: flyPath linear infinite;
+      z-index: 5;
+    }
+    .butterfly .body {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 14px;
+      height: 58px;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(180deg, #fff4c4, #ff8fab 55%, #8a4fff);
+      border-radius: 999px;
+      box-shadow: 0 0 16px rgba(255,255,255,0.35);
+      z-index: 3;
+    }
+    .butterfly .antenna,
+    .butterfly .antenna::after {
+      position: absolute;
+      content: '';
+      width: 2px;
+      height: 28px;
+      background: linear-gradient(180deg, #fff, transparent);
+      top: -14px;
+      border-radius: 999px;
+    }
+    .butterfly .antenna { left: calc(50% - 6px); transform: rotate(-28deg); }
+    .butterfly .antenna::after { left: 10px; top: 0; transform: rotate(56deg); }
+    .wing {
+      position: absolute;
+      top: 50%;
+      width: 74px;
+      height: 92px;
+      transform-style: preserve-3d;
+      transform-origin: center right;
+      border-radius: 65% 35% 60% 40% / 55% 45% 55% 45%;
+      overflow: hidden;
+      box-shadow:
+        inset 0 0 22px rgba(255,255,255,0.35),
+        0 0 18px rgba(255, 150, 210, 0.26);
+    }
+    .wing.left {
+      left: 50%;
+      transform: translate(-100%, -50%) rotateY(18deg);
+      animation: flapLeft .28s ease-in-out infinite;
+      background: radial-gradient(circle at 35% 35%, #fff8cf 0%, #ffb3d9 25%, #b37cff 58%, #47206f 100%);
+    }
+    .wing.right {
+      left: 50%;
+      transform: translate(0, -50%) rotateY(-18deg) scaleX(-1);
+      animation: flapRight .28s ease-in-out infinite;
+      background: radial-gradient(circle at 35% 35%, #fff8cf 0%, #ffb3d9 25%, #b37cff 58%, #47206f 100%);
+    }
+    .wing::before,
+    .wing::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }
+    .wing::before {
+      background:
+        radial-gradient(circle at 30% 28%, rgba(255,255,255,0.95), transparent 18%),
+        radial-gradient(circle at 62% 66%, rgba(255, 240, 170, 0.85), transparent 14%),
+        radial-gradient(circle at 42% 80%, rgba(255,255,255,0.65), transparent 10%);
+      mix-blend-mode: screen;
+    }
+    .wing::after {
+      border: 2px solid rgba(255,255,255,0.22);
+      box-shadow: inset 0 0 12px rgba(255,255,255,0.22);
+    }
+    .wing.small {
+      width: 60px;
+      height: 70px;
+      top: calc(50% + 34px);
+      border-radius: 55% 45% 55% 45% / 55% 45% 60% 40%;
+      opacity: 0.92;
+    }
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 12px rgba(255,255,255,0.8);
+      animation: sparkleUp linear infinite;
+    }
+    .back-btn {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      z-index: 30;
+      background: rgba(255,255,255,0.12);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+    }
+    @keyframes flapLeft {
+      0%,100% { transform: translate(-100%, -50%) rotateY(22deg) rotateZ(-4deg); }
+      50% { transform: translate(-100%, -50%) rotateY(72deg) rotateZ(4deg); }
+    }
+    @keyframes flapRight {
+      0%,100% { transform: translate(0, -50%) rotateY(-22deg) scaleX(-1) rotateZ(-4deg); }
+      50% { transform: translate(0, -50%) rotateY(-72deg) scaleX(-1) rotateZ(4deg); }
+    }
+    @keyframes flyPath {
+      0% { transform: translate3d(-15vw, 82vh, -300px) scale(.72) rotate(-8deg); opacity: 0; }
+      8% { opacity: 1; }
+      25% { transform: translate3d(18vw, 55vh, 120px) scale(.95) rotate(6deg); }
+      50% { transform: translate3d(48vw, 28vh, 260px) scale(1.16) rotate(-4deg); }
+      75% { transform: translate3d(74vw, 58vh, 80px) scale(.98) rotate(8deg); }
+      100% { transform: translate3d(115vw, 20vh, -240px) scale(.7) rotate(-6deg); opacity: 0; }
+    }
+    @keyframes orbFloat {
+      0% { transform: translateY(0) translateX(0) scale(1); }
+      50% { transform: translateY(-40px) translateX(20px) scale(1.15); }
+      100% { transform: translateY(-80px) translateX(-10px) scale(.92); }
+    }
+    @keyframes sparkleUp {
+      0% { transform: translateY(0) scale(.6); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-120px) scale(1.4); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene" id="scene">
+    <div class="title-box">
+      <h1>Shruti Special 🦋</h1>
+      <p>
+        A dreamy butterfly world made specially for Shruti — soft lights, magical motion,
+        and a premium flying 3D-style effect in the background.
+      </p>
+    </div>
+    <button class="back-btn" onclick="window.close()">Close ✨</button>
+  </div>
+  <script>
+    const scene = document.getElementById('scene');
+
+    function createOrb() {
+      const orb = document.createElement('div');
+      orb.className = 'glow-orb';
+      const size = Math.random() * 90 + 40;
+      orb.style.width = size + 'px';
+      orb.style.height = size + 'px';
+      orb.style.left = Math.random() * 100 + 'vw';
+      orb.style.top = Math.random() * 100 + 'vh';
+      orb.style.background = ['rgba(255,180,220,.22)','rgba(180,220,255,.18)','rgba(255,240,180,.16)'][Math.floor(Math.random()*3)];
+      orb.style.animationDuration = (Math.random() * 12 + 10) + 's';
+      scene.appendChild(orb);
+    }
+
+    function createButterfly(delay = 0, duration = 12, topOffset = 0) {
+      const butterfly = document.createElement('div');
+      butterfly.className = 'butterfly';
+      butterfly.style.animationDelay = delay + 's';
+      butterfly.style.animationDuration = duration + 's';
+      butterfly.style.top = topOffset + 'px';
+      butterfly.innerHTML = `
+        <div class="wing left"></div>
+        <div class="wing right"></div>
+        <div class="wing small left"></div>
+        <div class="wing small right"></div>
+        <div class="body"></div>
+        <div class="antenna"></div>
+      `;
+      scene.appendChild(butterfly);
+    }
+
+    function createSparkles() {
+      setInterval(() => {
+        const s = document.createElement('div');
+        s.className = 'sparkle';
+        s.style.left = (Math.random() * 100) + 'vw';
+        s.style.top = (Math.random() * 100) + 'vh';
+        s.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        scene.appendChild(s);
+        setTimeout(() => s.remove(), 4000);
+      }, 220);
+    }
+
+    for (let i = 0; i < 14; i++) createOrb();
+    createButterfly(0, 12, 0);
+    createButterfly(2.2, 14, -30);
+    createButterfly(4.5, 11, 20);
+    createButterfly(1.2, 16, 40);
+    createButterfly(6.2, 13, -20);
+    createSparkles();
+  <\/script>
+</body>
+</html>`;
+
+      const newWindow = window.open('', '_blank');
+      newWindow.document.open();
+      newWindow.document.write(nextPage);
+      newWindow.document.close();
+    }
+
+    createStars(); 
+    typeWriter();
+
+    setInterval(() => {
+      burstHearts(1);
+    }, 900);
+
+    window.addEventListener("load", () => {
+      tryAutoplay();
+    });
+
+    document.addEventListener("click", async () => {
+      try {
         music.muted = false;
         music.volume = 1;
-      } else {
-        music.pause();
-      }
-    } catch (e) {
-      overlay.style.display = "flex";
-    }
-  }
-
-  createStars();
-  typeWriter();
-
-  setInterval(() => {
-    burstHearts(1);
-  }, 900);
-
-  window.addEventListener("load", () => {
-    tryAutoplay();
-  });
-
-  document.addEventListener("click", async () => {
-    try {
-      music.muted = false;
-      music.volume = 1;
-      if (music.paused) {
-        await music.play();
-      }
-    } catch (e) {}
-  }, { once: true });
+        if (music.paused) {
+          await music.play();
+        }
+      } catch (e) {}
+    }, { once: true });
   </script>
 </body>
 </html>
