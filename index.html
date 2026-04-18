@@ -693,6 +693,9 @@
   <div class="special-page" id="specialPage">
     <div class="special-title-box">
       <h2>Shruti Special 🦋</h2>
+      <button class="heart-btn" onclick="openHeartPage()">
+  My Heart ❤️
+</button>
       <p>A dreamy butterfly world made specially for Shruti — soft lights, magical motion, and a premium butterfly effect in the background.</p>
     </div>
     <button class="back-btn" id="backToMainBtn" onclick="closeShrutiSpecial()">Go Back ✨</button>
@@ -912,5 +915,10 @@
       }
     }, { once: true });
   </script>
+  <script>
+  function openHeartPage() {
+    window.location.href = "heart.html";
+  }
+</script>
 </body>
 </html>
